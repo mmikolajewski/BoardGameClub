@@ -1,0 +1,10 @@
+INSERT INTO genre (id, name) VALUES (1, 'Strategy');
+INSERT INTO genre (id, name) VALUES (2, 'Cooperative');
+INSERT INTO genre (id, name) VALUES (3, 'Tile Placement');
+INSERT INTO genre (id, name) VALUES (4, 'Deck Building');
+INSERT INTO genre (id, name) VALUES (5, 'Adventure');
+INSERT INTO genre (id, name) VALUES (6, 'Party');
+INSERT INTO genre (id, name) VALUES (7, 'Area Control');
+INSERT INTO genre (id, name) VALUES (8, 'Worker Placement');
+INSERT INTO genre (id, name) VALUES (9, 'Card Game');
+INSERT INTO genre (id, name) VALUES (10, 'Exploration');
