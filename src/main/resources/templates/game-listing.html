@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>GameClub</title>
+</head>
+    <main class="main-content" layout:fragment="content">
+        <h2 class="list-heading" th:text="${heading}">Promowane filmy / Nazwa Kategorii</h2>
+        <p class="list-description" th:text="${description}">Opis sekcji, przykładowo opis kategorii, albo strony głównej</p>
+        <ul class="game-list" th:remove="all-but-first">
+            <li class="game-list-item" th:each="game: ${games}">
+                <a href="#" th:href="@{|/gra/${game.id}|}">
+                    <img src="../static/img/poster-placeholder.png"
+                         th:src="@{/img/poster-placeholder.png}"
+                         alt="nazwa gry"
+                         class="game-list-item-image">
+                </a>
+                <div class="game-list-item-card">
+                    <div class="game-list-item-content">
+                        <h3 class="game-list-item-title">
+                            <a href="#" th:href="@{|gra/${game.id}|}" th:text="${game.title}">tytuł gry</a>
+                        </h3>
+                        <p th:text="${game.releaseYear}">2015</p>
+                        <p th:text="${game.getGenreList()}">kategorie</p>
+                    </div>
+                    <div class="game-list-item-rating">
+                        <i class="fas fa-star"></i>
+                        <span>8.7</span>
+                    </div>
+                </div>
+            </li>
+            <li class="game-list-item" >
+                <a href="#">
+                    <img src="../static/img/poster-placeholder.png">
+                </a>
+                <div class="game-list-item-card">
+                    <div class="game-list-item-content">
+                        <h3 class="game-list-item-title">
+                            <a href="#">tytuł gry</a>
+                        </h3>
+                        <p>2015</p>
+                    </div>
+                    <div class="game-list-item-rating">
+                        <i class="fas fa-star"></i>
+                        <span>8.7</span>
+                    </div>
+                </div>
+            </li>
+            <li class="game-list-item" >
+                <a href="#">
+                    <img src="../static/img/poster-placeholder.png">
+                </a>
+                <div class="game-list-item-card">
+                    <div class="game-list-item-content">
+                        <h3 class="game-list-item-title">
+                            <a href="#">tytuł gry</a>
+                        </h3>
+                        <p>2015</p>
+                    </div>
+                    <div class="game-list-item-rating">
+                        <i class="fas fa-star"></i>
+                        <span>8.7</span>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+
+    </main>
+
+    <footer class="footer">
+        <p>BoardGameClub 2023 <i class="fas fa-copyright"></i> PortoFilm.pl</p>
+    </footer>
+</div>
+<link rel="stylesheet" href="/styles/main.css" >
+<script src="/scripts/common.js"></script>
+</body>
+</html>
