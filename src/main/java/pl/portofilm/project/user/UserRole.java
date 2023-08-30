@@ -1,15 +1,16 @@
-package pl.portofilm.project.genre;
+package pl.portofilm.project.user;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-public class Genre {
-
+public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String namePl;
     private String description;
 
     public Long getId() {
@@ -28,24 +29,11 @@ public class Genre {
         this.name = name;
     }
 
-    public String getNamePl() {
-        return namePl;
-    }
-
-    public void setNamePl(String namePl) {
-        this.namePl = namePl;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

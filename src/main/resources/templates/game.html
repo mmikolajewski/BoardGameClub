@@ -9,15 +9,29 @@
   <main class="main-content" layout:fragment="content">
     <section class="game">
       <div class="game-summary">
-        <img src="/img/poster-placeholder.png"
+        <img th:if="${game.poster == null}" src="/img/poster-placeholder.png"
+             th:src="@{/img/poster-placeholder.png}"
              alt="tytuł filmu"
+             th:alt="${game.title}"
+             class="game-summary-cover"
+        />
+        <img th:unless="${game.poster == null}" src="/img/poster-placeholder.png"
+             th:src="@{|/img/${game.poster}|}"
+             alt="tytuł filmu"
+             th:alt="${game.title}"
              class="game-summary-cover"
         />
         <div class="game-summary-info">
-          <h1 class="game-summary-title">Segrada</h1>
-          <p class="game-summary-item">Rok: 2017</p>
-          <p class="game-summary-item">Gatunek: <a href="#">Strategy</a>, <a href="#">Tile placement</a>, <a href="#">Card game</a>  </p>
-          <p class="game-summary-item" >
+          <h1 class="game-summary-title" th:text="${game.title}">Segrada</h1>
+          <p class="game-summary-item" th:text="|Rok:${game.releaseYear}|">Rok: 2017</p>
+          <p class="game-summary-item">Gatunek:
+          <a href="#" th:each="category: ${game.getGenreList()}" th:href="|@{/gatunek}/${category.name}|" th:text="| ${category.name}|"></a>
+          </p>
+
+          <p class="game-summary-item">Ilość graczy
+            <a th:text="|min: |">min: </a> <span th:text="${game.minPlayers}"></span>
+            <a th:text="|max: |">max: </a><span th:text="${game.maxPlayers}"></span>
+          <p class="game-summary-item" th:text="${game.shortDescription}">
             Sagrada to gra, której sercem jest 90 kolorowych kostek, które posłużą do budowy witraży przedstawionych na kartach.
           </p>
         </div>
@@ -44,25 +58,21 @@
         <p><a href="#">Zaloguj się</a>, aby oddać głos</p>
       </div>
     </section>
-    <!-- trailer -->
-    <section class="game-trailer-container game-section">
-      <h2 class="game-section-heading">Jak grać</h2>
-      <iframe width="560" height="315" class="game-guide"
-              src="https://www.youtube.com/watch?v=Cv1YWY8qjKc"
-              allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      <iframe width="560" height="315" class="game-guide"
-              src="https://www.youtube.com/watch?v=5DzO6bvTEWs"
-              allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </section>
     <!-- opis -->
     <section class="game-section">
       <h2 class="game-section-heading">Opis</h2>
-      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at,
+      <p th:text="${game.description}">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at,
         tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
     </section>
+    <!-- poradnik -->
+    <section th:if="${game.youtubeId != null}"  class="game-trailer-container game-section">
+      <h2 class="game-section-heading">Jak grać</h2>
+      <iframe width="560" height="315" class="game-guide"
+              src="https://www.youtube.com/watch?v=Cv1YWY8qjKc"
+              th:src="|https://www.youtube.com/${game.getYoutubeId()}|"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </section>
   </main>
-
-  <footer class="footer">
 
   <footer class="footer">
     <p>BoardGameClub 2023 <i class="fas fa-copyright"></i> PortoFilm.pl</p>

@@ -12,18 +12,26 @@
         <ul class="game-list" th:remove="all-but-first">
             <li class="game-list-item" th:each="game: ${games}">
                 <a href="#" th:href="@{|/gra/${game.id}|}">
-                    <img src="../static/img/poster-placeholder.png"
+                    <img th:if="${game.poster == null}" src="/img/poster-placeholder.png"
                          th:src="@{/img/poster-placeholder.png}"
-                         alt="nazwa gry"
-                         class="game-list-item-image">
+                         alt="tytuł filmu"
+                         th:alt="${game.title}"
+                         class="game-summary-cover"
+                    />
+                    <img th:unless="${game.poster == null}" src="/img/poster-placeholder.png"
+                         th:src="@{|/img/${game.poster}|}"
+                         alt="tytuł filmu"
+                         th:alt="${game.title}"
+                         class="game-summary-cover"
+                    />
                 </a>
                 <div class="game-list-item-card">
                     <div class="game-list-item-content">
                         <h3 class="game-list-item-title">
-                            <a href="#" th:href="@{|gra/${game.id}|}" th:text="${game.title}">tytuł gry</a>
+                            <a href="#" th:href="|@{/gra}/${game.id}|" th:text="${game.title}">tytuł gry</a>
                         </h3>
                         <p th:text="${game.releaseYear}">2015</p>
-                        <p th:text="${game.getGenreList()}">kategorie</p>
+                        <p th:text="${game.getGenreListAsString()}">kategorie</p>
                     </div>
                     <div class="game-list-item-rating">
                         <i class="fas fa-star"></i>

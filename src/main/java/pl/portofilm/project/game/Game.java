@@ -13,10 +13,12 @@ public class Game {
     private Long id;
     private String title;
     private Integer releaseYear;
-
+    private String shortDescription;
+    private String description;
+    private String youtubeId;
     private Integer minPlayers;
-
     private Integer maxPlayers;
+    private String poster;
 
     @ManyToMany
     @JoinTable(name = "game_genre",
@@ -30,8 +32,40 @@ public class Game {
         return promoted;
     }
 
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
     public void setPromoted(boolean promoted) {
         this.promoted = promoted;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getYoutubeId() {
+        return youtubeId;
+    }
+
+    public void setYoutubeId(String youtubeId) {
+        this.youtubeId = youtubeId;
     }
 
     public Long getId() {

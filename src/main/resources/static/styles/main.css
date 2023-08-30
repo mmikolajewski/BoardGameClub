@@ -255,3 +255,95 @@ i powinna zajmować większość dostępnej przestrzeni
     }
 }
 /*game.html END*/
+
+/*error.html START*/
+
+.error-container{
+    margin: 32px auto;
+}
+.error-container > * {
+    display: block;
+    text-align: center;
+}
+.error-header,
+.error-icon {
+    font-size: 2rem;
+    margin: 16px 0;
+}
+/*error.html END*/
+
+/*genre-listing START*/
+.list-border{
+    margin: auto;
+    list-style: none;
+}
+.list-border > li {
+    font-size: 1.2rem;
+    border: 1px #6d6d6d solid;
+    padding: 16px;
+    text-align: center;
+}
+
+/*genre-listing END/
+/*genre-form START/*/
+
+textarea{
+    font-family: inherit;
+}
+
+.gc-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 32px;
+}
+
+.gc-form > * {
+    margin-top: 8px;
+
+}
+.gc-form > input,
+.gc-form > textarea,
+.gc-form > button {
+    font-size: 1.2rem ;
+    color: black;
+    padding: 8px;
+}
+
+.gc-form > button {
+    margin-top: 16px;
+    background-color: white;
+    color: #ffc107;
+    border: none;
+}
+/*genre-form END/*/
+
+/*notification-bar - powiadomienie  */
+.notification-bar {
+    text-align: center;
+    background-color: #ffc107;
+    padding: 8px 0;
+}
+
+/* game-form START */
+.gc-form > input,
+.gc-form > textarea,
+.gc-form > button,
+.gc-form > select {
+    font-size: 1.2rem;
+    color: black;
+    padding: 8px;
+}
+
+/* zwiekszony chcecbox */
+.gc-form > input[type=checkbox] {
+    transform: scale(1.5);
+    margin-left: 5px;
+}
+
+/* logowanie komunikat */
+.gc-form-message{
+    color: cornflowerblue;
+    text-align: center;
+}
+
+

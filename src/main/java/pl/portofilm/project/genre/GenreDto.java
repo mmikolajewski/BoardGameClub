@@ -1,16 +1,20 @@
 package pl.portofilm.project.genre;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Genre {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class GenreDto {
     private Long id;
     private String name;
     private String namePl;
     private String description;
+
+    public GenreDto() {
+    }
+
+    public GenreDto(Long id, String name, String namePl, String description) {
+        this.id = id;
+        this.name = name;
+        this.namePl = namePl;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -42,10 +46,5 @@ public class Genre {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

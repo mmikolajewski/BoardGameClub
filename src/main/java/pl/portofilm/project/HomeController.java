@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.portofilm.project.game.dto.GameDto;
-import pl.portofilm.project.game.dto.GameService;
+import pl.portofilm.project.game.GameService;
 
 import java.util.List;
 
@@ -26,8 +26,4 @@ public class HomeController {
         return "game-listing";
     }
 
-    @GetMapping("/game")
-    String game(){
-        return "game";
-    }
 }

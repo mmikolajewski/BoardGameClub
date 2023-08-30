@@ -1,12 +1,12 @@
 package pl.portofilm.project.game.dto;
 
+import org.springframework.web.multipart.MultipartFile;
 import pl.portofilm.project.genre.Genre;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameDto {
-    private Long id;
+public class GameSaveDto {
     private String title;
     private Integer releaseYear;
     private String shortDescription;
@@ -14,41 +14,9 @@ public class GameDto {
     private String youtubeId;
     private Integer minPlayers;
     private Integer maxPlayers;
-    private List<Genre> genreList = new ArrayList<>();
+    private String genre;
     private boolean promoted;
-    private String poster;
-
-    public GameDto(Long id, String title, Integer releaseYear, String shortDescription, String description,
-                   String youtubeId, Integer minPlayers, Integer maxPlayers, List<Genre> genreList,
-                   boolean promoted, String poster) {
-        this.id = id;
-        this.title = title;
-        this.releaseYear = releaseYear;
-        this.shortDescription = shortDescription;
-        this.description = description;
-        this.youtubeId = youtubeId;
-        this.minPlayers = minPlayers;
-        this.maxPlayers = maxPlayers;
-        this.genreList = genreList;
-        this.promoted = promoted;
-        this.poster = poster;
-    }
-
-    public String getPoster() {
-        return poster;
-    }
-
-    public void setPoster(String poster) {
-        this.poster = poster;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private MultipartFile poster;
 
     public String getTitle() {
         return title;
@@ -106,18 +74,12 @@ public class GameDto {
         this.maxPlayers = maxPlayers;
     }
 
-    public String getGenreListAsString() {
-        return genreList.toString()
-                .replace("[", "")
-                .replace("]", "");
+    public String getGenre() {
+        return genre;
     }
 
-    public List<Genre> getGenreList() {
-        return genreList;
-    }
-
-    public void setGenreList(List<Genre> genreList) {
-        this.genreList = genreList;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public boolean isPromoted() {
@@ -127,5 +89,12 @@ public class GameDto {
     public void setPromoted(boolean promoted) {
         this.promoted = promoted;
     }
-}
 
+    public MultipartFile getPoster() {
+        return poster;
+    }
+
+    public void setPoster(MultipartFile poster) {
+        this.poster = poster;
+    }
+}

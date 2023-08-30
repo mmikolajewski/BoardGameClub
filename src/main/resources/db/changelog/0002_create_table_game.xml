@@ -11,6 +11,10 @@
             </column>
             <column name="title" type="VARCHAR(100)"/>
             <column name="release_year" type="INT"/>
+            <column name="short_description" type="VARCHAR(200)"/>
+            <column name="description" type="VARCHAR(10000)"/>
+            <column name="youtube_id" type="VARCHAR(40)"/>
+            <column name="poster" type="VARCHAR(80)"/>
             <column name="promoted" type="BOOLEAN"/>
             <column name="min_players" type="INT"/>
             <column name="max_players" type="INT"/>
