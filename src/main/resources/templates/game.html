@@ -2,9 +2,10 @@
 <html lang="pl"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+layout:decorate="~{layout}">
 <head>
-  <title>GameClub</title>
+  <title>Gra - Pawn</title>
 </head>
   <main class="main-content" layout:fragment="content">
     <section class="game">
@@ -25,7 +26,7 @@
           <h1 class="game-summary-title" th:text="${game.title}">Segrada</h1>
           <p class="game-summary-item" th:text="|Rok:${game.releaseYear}|">Rok: 2017</p>
           <p class="game-summary-item">Gatunek:
-          <a href="#" th:each="category: ${game.getGenreList()}" th:href="|@{/gatunek}/${category.name}|" th:text="| ${category.name}|"></a>
+          <a href="#" th:each="category: ${game.getGenreList()}" th:href="|@{/gatunek}/${category.name}|" th:text="| ${category.namePl}|"></a>
           </p>
 
           <p class="game-summary-item">Ilość graczy
@@ -39,23 +40,31 @@
       <!-- Ocena -->
       <div class="game-rating-container game-section">
         <h2 class="game-section-heading">Ocena</h2>
+        <p th:unless="${game.ratingCount}">Brak głosów</p>
         <div>
-          <p class="game-rating-value" th:text="${avgRating}">4.0</p>
-          <p>Liczba ocen: 134</p>
+          <p class="game-rating-value" th:text="${#numbers.formatDecimal(game.ratingAvg, 1, 1)}">4.0</p>
+          <p th:text="|Liczba ocen: ${game.ratingCount}|">Liczba ocen: 134</p>
         </div>
-        <form action="#" class="game-rating-form">
+        <form action="#" th:action="@{/ocen-gre}" method="post" class="game-rating-form">
           <!-- Identyfikator filmu, na który głosujemy-->
           <p>Twoja ocena</p>
-          <input type="hidden" name="gameId">
+          <input type="hidden" name="gameId" th:value="${game.id}">
           <div class="game-rating-buttons">
-            <button class="game-rating-button"><i class="fa-solid fa-star"></i></button>
-            <button class="game-rating-button"><i class="fa-solid fa-star"></i></button>
-            <button class="game-rating-button"><i class="fa-solid fa-star"></i></button>
-            <button class="game-rating-button"><i class="fa-solid fa-star"></i></button>
-            <button class="game-rating-button"><i class="fa-regular fa-star"></i></button>
+            <!-- Generujemy 5 gwiazdek w pętli -->
+            <button class="game-rating-button"
+                    name="rating"
+                    th:each="i: ${#numbers.sequence(1,5)}"
+                    th:value="${i}">
+              <!-- Pełną i pustą gwiazdkę rozróżniamy dodając odpowiednią klasę na podstawie głosu użytkownika -->
+                    <i class="fa-star" th:classappend="${i <= userRating ? 'fa-solid' : 'fa-regular'}"></i>
+            </button>
           </div>
+          <p class="notification-bar" th:if="${notification}" th:text="${notification}">
+            Belka z powiadomieniami
+          </p>
         </form>
-        <p><a href="#">Zaloguj się</a>, aby oddać głos</p>
+        <p sec:authorize="!isAuthenticated()" ><a href="#" th:href="@{/login}">Zaloguj się</a>
+          , aby oddać głos</p>
       </div>
     </section>
     <!-- opis -->
@@ -69,13 +78,13 @@
       <h2 class="game-section-heading">Jak grać</h2>
       <iframe width="560" height="315" class="game-guide"
               src="https://www.youtube.com/watch?v=Cv1YWY8qjKc"
-              th:src="|https://www.youtube.com/${game.getYoutubeId()}|"
+              th:src="|https://www.youtube.com/embed/${game.getYoutubeId()}|"
               allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </section>
   </main>
 
   <footer class="footer">
-    <p>BoardGameClub 2023 <i class="fas fa-copyright"></i> PortoFilm.pl</p>
+    <p>Pawn 2023 <i class="fas fa-copyright"></i> PortoFilm.pl</p>
   </footer>
 </div>
 <link rel="stylesheet" href="/styles/main.css" >

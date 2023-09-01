@@ -1,5 +1,6 @@
 package pl.portofilm.project.game;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.portofilm.project.game.dto.GameDto;
 import pl.portofilm.project.game.dto.GameSaveDto;
@@ -7,7 +8,7 @@ import pl.portofilm.project.genre.Genre;
 import pl.portofilm.project.genre.GenreRepository;
 import pl.portofilm.project.storage.FileStorageService;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -59,5 +60,12 @@ public class GameService {
             game.setPoster(savedFileName);
         }
         gameRepository.save(game);
+    }
+
+    public List<GameDto> findTopGames(int size) {
+        Pageable page= Pageable.ofSize(size);
+        return gameRepository.findTopByRating(page).stream()
+                .map(GameDtoMapper::map)
+                .toList();
     }
 }

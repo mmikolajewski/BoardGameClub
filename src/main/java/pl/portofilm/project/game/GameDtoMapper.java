@@ -1,10 +1,15 @@
 package pl.portofilm.project.game;
 
-import pl.portofilm.project.game.Game;
 import pl.portofilm.project.game.dto.GameDto;
+import pl.portofilm.project.rating.Rating;
 
 public class GameDtoMapper {
     static GameDto map(Game game) {
+        double avgRating = game.getRatings().stream()
+                .map(Rating::getRating)
+                .mapToDouble(value -> value)
+                .average().orElse(0);
+        int ratingCount = game.getRatings().size();
         return new GameDto(
                 game.getId(),
                 game.getTitle(),
@@ -16,7 +21,8 @@ public class GameDtoMapper {
                 game.getMaxPlayers(),
                 game.getGenreList(),
                 game.isPromoted(),
-                game.getPoster()
-        );
+                game.getPoster(),
+                avgRating,
+                ratingCount);
     }
 }

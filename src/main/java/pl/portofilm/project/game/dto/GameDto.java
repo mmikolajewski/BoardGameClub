@@ -17,10 +17,12 @@ public class GameDto {
     private List<Genre> genreList = new ArrayList<>();
     private boolean promoted;
     private String poster;
+    private double ratingAvg;
+    private int ratingCount;
 
     public GameDto(Long id, String title, Integer releaseYear, String shortDescription, String description,
                    String youtubeId, Integer minPlayers, Integer maxPlayers, List<Genre> genreList,
-                   boolean promoted, String poster) {
+                   boolean promoted, String poster, double ratingAvg, int ratingCount) {
         this.id = id;
         this.title = title;
         this.releaseYear = releaseYear;
@@ -32,6 +34,8 @@ public class GameDto {
         this.genreList = genreList;
         this.promoted = promoted;
         this.poster = poster;
+        this.ratingAvg = ratingAvg;
+        this.ratingCount = ratingCount;
     }
 
     public String getPoster() {
@@ -110,6 +114,22 @@ public class GameDto {
         return genreList.toString()
                 .replace("[", "")
                 .replace("]", "");
+    }
+
+    public double getRatingAvg() {
+        return ratingAvg;
+    }
+
+    public void setRatingAvg(double ratingAvg) {
+        this.ratingAvg = ratingAvg;
+    }
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
     }
 
     public List<Genre> getGenreList() {

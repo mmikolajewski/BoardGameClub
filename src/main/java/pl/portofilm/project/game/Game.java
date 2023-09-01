@@ -2,9 +2,12 @@ package pl.portofilm.project.game;
 
 import jakarta.persistence.*;
 import pl.portofilm.project.genre.Genre;
+import pl.portofilm.project.rating.Rating;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Game {
@@ -19,14 +22,15 @@ public class Game {
     private Integer minPlayers;
     private Integer maxPlayers;
     private String poster;
-
     @ManyToMany
     @JoinTable(name = "game_genre",
     joinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id")
-    )
+    inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
     private List<Genre> genreList = new ArrayList<>();
     private boolean promoted;
+    @OneToMany(mappedBy = "game")
+    private Set<Rating> ratings = new HashSet<>();
+
 
     public boolean isPromoted() {
         return promoted;
@@ -114,5 +118,13 @@ public class Game {
 
     public void setGenreList(List<Genre> genreList) {
         this.genreList = genreList;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

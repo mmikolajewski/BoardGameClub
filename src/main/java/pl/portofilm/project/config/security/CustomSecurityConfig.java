@@ -31,6 +31,7 @@ public class CustomSecurityConfig {
         PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
         http
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(mvc.pattern("/ocen-film")).authenticated()
                         .requestMatchers(mvc.pattern("/admin/**")).hasAnyRole(ADMIN_ROLE)
                         .requestMatchers(h2ConsoleRequestMatcher).permitAll()
                         .anyRequest().permitAll()
