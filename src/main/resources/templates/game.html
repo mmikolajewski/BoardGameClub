@@ -2,22 +2,37 @@
 <html lang="pl"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+layout:decorate="~{layout}">
 <head>
-  <title>GameClub</title>
+  <title>Gra - Pawn</title>
 </head>
   <main class="main-content" layout:fragment="content">
     <section class="game">
       <div class="game-summary">
-        <img src="/img/poster-placeholder.png"
+        <img th:if="${game.poster == null}" src="/img/poster-placeholder.png"
+             th:src="@{/img/poster-placeholder.png}"
              alt="tytuł filmu"
+             th:alt="${game.title}"
+             class="game-summary-cover"
+        />
+        <img th:unless="${game.poster == null}" src="/img/poster-placeholder.png"
+             th:src="@{|/img/${game.poster}|}"
+             alt="tytuł filmu"
+             th:alt="${game.title}"
              class="game-summary-cover"
         />
         <div class="game-summary-info">
-          <h1 class="game-summary-title">Segrada</h1>
-          <p class="game-summary-item">Rok: 2017</p>
-          <p class="game-summary-item">Gatunek: <a href="#">Strategy</a>, <a href="#">Tile placement</a>, <a href="#">Card game</a>  </p>
-          <p class="game-summary-item" >
+          <h1 class="game-summary-title" th:text="${game.title}">Segrada</h1>
+          <p class="game-summary-item" th:text="|Rok:${game.releaseYear}|">Rok: 2017</p>
+          <p class="game-summary-item">Gatunek:
+          <a href="#" th:each="category: ${game.getGenreList()}" th:href="|@{/gatunek}/${category.name}|" th:text="| ${category.namePl}|"></a>
+          </p>
+
+          <p class="game-summary-item">Ilość graczy
+            <a th:text="|min: |">min: </a> <span th:text="${game.minPlayers}"></span>
+            <a th:text="|max: |">max: </a><span th:text="${game.maxPlayers}"></span>
+          <p class="game-summary-item" th:text="${game.shortDescription}">
             Sagrada to gra, której sercem jest 90 kolorowych kostek, które posłużą do budowy witraży przedstawionych na kartach.
           </p>
         </div>
@@ -25,47 +40,51 @@
       <!-- Ocena -->
       <div class="game-rating-container game-section">
         <h2 class="game-section-heading">Ocena</h2>
+        <p th:unless="${game.ratingCount}">Brak głosów</p>
         <div>
-          <p class="game-rating-value" th:text="${avgRating}">4.0</p>
-          <p>Liczba ocen: 134</p>
+          <p class="game-rating-value" th:text="${#numbers.formatDecimal(game.ratingAvg, 1, 1)}">4.0</p>
+          <p th:text="|Liczba ocen: ${game.ratingCount}|">Liczba ocen: 134</p>
         </div>
-        <form action="#" class="game-rating-form">
+        <form action="#" th:action="@{/ocen-gre}" method="post" class="game-rating-form">
           <!-- Identyfikator filmu, na który głosujemy-->
           <p>Twoja ocena</p>
-          <input type="hidden" name="gameId">
+          <input type="hidden" name="gameId" th:value="${game.id}">
           <div class="game-rating-buttons">
-            <button class="game-rating-button"><i class="fa-solid fa-star"></i></button>
-            <button class="game-rating-button"><i class="fa-solid fa-star"></i></button>
-            <button class="game-rating-button"><i class="fa-solid fa-star"></i></button>
-            <button class="game-rating-button"><i class="fa-solid fa-star"></i></button>
-            <button class="game-rating-button"><i class="fa-regular fa-star"></i></button>
+            <!-- Generujemy 5 gwiazdek w pętli -->
+            <button class="game-rating-button"
+                    name="rating"
+                    th:each="i: ${#numbers.sequence(1,5)}"
+                    th:value="${i}">
+              <!-- Pełną i pustą gwiazdkę rozróżniamy dodając odpowiednią klasę na podstawie głosu użytkownika -->
+                    <i class="fa-star" th:classappend="${i <= userRating ? 'fa-solid' : 'fa-regular'}"></i>
+            </button>
           </div>
+          <p class="notification-bar" th:if="${notification}" th:text="${notification}">
+            Belka z powiadomieniami
+          </p>
         </form>
-        <p><a href="#">Zaloguj się</a>, aby oddać głos</p>
+        <p sec:authorize="!isAuthenticated()" ><a href="#" th:href="@{/login}">Zaloguj się</a>
+          , aby oddać głos</p>
       </div>
-    </section>
-    <!-- trailer -->
-    <section class="game-trailer-container game-section">
-      <h2 class="game-section-heading">Jak grać</h2>
-      <iframe width="560" height="315" class="game-guide"
-              src="https://www.youtube.com/watch?v=Cv1YWY8qjKc"
-              allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      <iframe width="560" height="315" class="game-guide"
-              src="https://www.youtube.com/watch?v=5DzO6bvTEWs"
-              allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </section>
     <!-- opis -->
     <section class="game-section">
       <h2 class="game-section-heading">Opis</h2>
-      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at,
+      <p th:text="${game.description}">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at,
         tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+    </section>
+    <!-- poradnik -->
+    <section th:if="${game.youtubeId != null}"  class="game-trailer-container game-section">
+      <h2 class="game-section-heading">Jak grać</h2>
+      <iframe width="560" height="315" class="game-guide"
+              src="https://www.youtube.com/watch?v=Cv1YWY8qjKc"
+              th:src="|https://www.youtube.com/embed/${game.getYoutubeId()}|"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </section>
   </main>
 
   <footer class="footer">
-
-  <footer class="footer">
-    <p>BoardGameClub 2023 <i class="fas fa-copyright"></i> PortoFilm.pl</p>
+    <p>Pawn 2023 <i class="fas fa-copyright"></i> PortoFilm.pl</p>
   </footer>
 </div>
 <link rel="stylesheet" href="/styles/main.css" >

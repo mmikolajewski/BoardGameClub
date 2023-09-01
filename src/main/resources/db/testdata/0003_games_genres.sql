@@ -21,7 +21,6 @@ INSERT INTO game_genre (game_id, genre_id) VALUES (7, 1);   -- Strategy
 -- Gloomhaven
 INSERT INTO game_genre (game_id, genre_id) VALUES (8, 7);   -- Area Control
 INSERT INTO game_genre (game_id, genre_id) VALUES (8, 2);   -- Cooperative
-INSERT INTO game_genre (game_id, genre_id) VALUES (8, 1);   -- Strategy
 -- Wingspan
 INSERT INTO game_genre (game_id, genre_id) VALUES (9, 1);   -- Strategy
 -- Root
@@ -41,7 +40,6 @@ INSERT INTO game_genre (game_id, genre_id) VALUES (15, 1);  -- Strategy
 INSERT INTO game_genre (game_id, genre_id) VALUES (16, 1);  -- Strategy
 -- Pandemic Legacy
 INSERT INTO game_genre (game_id, genre_id) VALUES (17, 2);  -- Cooperative
-INSERT INTO game_genre (game_id, genre_id) VALUES (17, 1);  -- Strategy
 -- Gloomhaven: Jaws of the Lion
 INSERT INTO game_genre (game_id, genre_id) VALUES (18, 2);  -- Cooperative
 INSERT INTO game_genre (game_id, genre_id) VALUES (18, 1);  -- Strategy

@@ -2,7 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-    color: white;
+    color: black;
 }
 /*Zmiana domyślnego fontu*/
 body {
@@ -11,7 +11,7 @@ body {
 /*Ustawienie koloru odnośników i usunięcie podkreśleń*/
 a {
     text-decoration: none;
-    color: #ffc107  ;
+    color: deepskyblue  ;
 }
 /*Kolor tła w głównym kontenerze i ustawienie elastycznego rozkładu
 Elementy będą ustawiane jeden pod drugim
@@ -20,7 +20,7 @@ Elementy będą ustawiane jeden pod drugim
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #424242;
+    background-color: #FFFFFF;
 }
 /*Główna sekcja powinna być skalowana wraz z rozciąganiem okna przeglądarki
 i powinna zajmować większość dostępnej przestrzeni
@@ -33,7 +33,7 @@ i powinna zajmować większość dostępnej przestrzeni
 /*Kolor logotypu i przycisku rozwijającego menu*/
 .logo,
 #toggle-icon {
-    color: #ffc107;
+    color: dodgerblue;
 }
 /*Ustawienia dla responsywnego menu*/
 .menu {
@@ -45,7 +45,7 @@ i powinna zajmować większość dostępnej przestrzeni
 .menu-item {
     width: 100%;
     padding: 16px;
-    border-bottom: 1px #6d6d6d solid;
+    border-bottom: 1px white solid;
     text-align: center;
     display: none;
 }
@@ -103,14 +103,17 @@ i powinna zajmować większość dostępnej przestrzeni
     background-position: center;
     background-repeat: no-repeat;
     padding: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
 }
 .jumbotron-header {
     font-size: 3rem;
     margin: 1rem 0;
+    color: #FFFFFF;
 }
 .jumbotron-description {
     font-size: 1.2rem;
+    color: white;
 }
 /*Jumbotron END*/
 
@@ -129,7 +132,7 @@ i powinna zajmować większość dostępnej przestrzeni
 .game-list-item {
     margin-bottom: 16px;
     display: flex;
-    border: 1px #6d6d6d solid;
+    border: 1px white solid;
 }
 /*Plakat - usuniecie paddingu*/
 .game-list-item-image {
@@ -170,9 +173,9 @@ i powinna zajmować większość dostępnej przestrzeni
 .game-summary-info {
     margin-left: 16px;
 }
-/*Oryginalny tytuł w kolorze szarym i odstęp pod nim*/
+/*Oryginalny tytuł w kolorze czarnymi odstęp pod nim*/
 .game-summary-original-title {
-    color: #9e9e9e;
+    color: black;
     margin-bottom: 16px;
 }
 /*Odstępy między poszczególnymi informacjami*/
@@ -205,7 +208,7 @@ i powinna zajmować większość dostępnej przestrzeni
 }
 /*Styl dla przycisków z ocenami*/
 .game-rating-button {
-    background-color: #ffc107;
+    background-color: bl;
     border: 0;
     padding: 4px;
     font-size: 1.6rem;
@@ -224,7 +227,7 @@ i powinna zajmować większość dostępnej przestrzeni
 .game-section {
     margin-top: 16px;
     padding: 16px;
-    border: 1px #6d6d6d solid;
+    border: 1px white solid;
 }
 /*Odstęp pod nagłówkami sekcji*/
 .game-section-heading {
@@ -255,3 +258,96 @@ i powinna zajmować większość dostępnej przestrzeni
     }
 }
 /*game.html END*/
+
+/*error.html START*/
+
+.error-container{
+    margin: 32px auto;
+}
+.error-container > * {
+    display: block;
+    text-align: center;
+}
+.error-header,
+.error-icon {
+    font-size: 2rem;
+    margin: 16px 0;
+}
+/*error.html END*/
+
+/*genre-listing START*/
+.list-border{
+    margin: auto;
+    list-style: none;
+}
+.list-border > li {
+    font-size: 1.2rem;
+    border: 1px white solid;
+    padding: 16px;
+    text-align: center;
+}
+
+/*genre-listing END/
+/*genre-form START/*/
+
+textarea{
+    font-family: inherit;
+}
+
+.gc-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 32px;
+}
+
+.gc-form > * {
+    margin-top: 8px;
+
+}
+.gc-form > input,
+.gc-form > textarea,
+.gc-form > button {
+    font-size: 1.2rem ;
+    color: black;
+    padding: 8px;
+}
+
+.gc-form > button {
+    margin-top: 16px;
+    margin-inline: 24rem;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+}
+/*genre-form END/*/
+
+/*notification-bar - powiadomienie  */
+.notification-bar {
+    text-align: center;
+    background-color: red;
+    padding: 8px 0;
+}
+
+/* game-form START */
+.gc-form > input,
+.gc-form > textarea,
+.gc-form > button,
+.gc-form > select {
+    font-size: 1.2rem;
+    color: black;
+    padding: 8px;
+}
+
+/* zwiekszony chcecbox */
+.gc-form > input[type=checkbox] {
+    transform: scale(1.5);
+    margin-left: 5px;
+}
+
+/* logowanie komunikat */
+.gc-form-message{
+    color: cornflowerblue;
+    text-align: center;
+}
+
+

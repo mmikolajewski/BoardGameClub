@@ -1,11 +1,6 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    username: portofilm
-    password:
-  liquibase:
-    contexts: dev
-    change-log: classpath:db/changelog/master.xml
   jpa:
     hibernate:
       ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
