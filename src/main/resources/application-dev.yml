@@ -1,0 +1,22 @@
+spring:
+  h2:
+    console:
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL
+    username: portofilm
+    password:
+  liquibase:
+    contexts: dev
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.schema.internal.script.MultiLineSqlScriptExtractor
+  web:
+    resources:
+      static-locations: classpath:/static/,file:./uploads/
+app:
+  storage:
+    location: ./uploads/
