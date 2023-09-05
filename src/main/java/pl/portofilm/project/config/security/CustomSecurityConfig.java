@@ -3,8 +3,11 @@ package pl.portofilm.project.config.security;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer.FrameOptionsConfig;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -13,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
+
+import java.beans.beancontext.BeanContext;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -27,13 +32,35 @@ public class CustomSecurityConfig {
         return new MvcRequestMatcher.Builder(introspector);
     }
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
+    @Profile("!dev")
+    @Order(1)
+    public SecurityFilterChain filterChain1(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
+        http
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(mvc.pattern("/ocen-film")).authenticated()
+                        .requestMatchers(mvc.pattern("/admin/**")).hasAnyRole(ADMIN_ROLE)
+                        .anyRequest().permitAll()
+                );
+        http
+                .formLogin(login -> login.loginPage("/login").permitAll())
+                .logout(logout-> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout/**", HttpMethod.GET.name()))
+                        .logoutSuccessUrl("/login?logout").permitAll()
+                );
+        http.headers(header -> header.frameOptions(FrameOptionsConfig::sameOrigin));
+        return http.build();
+    }
+
+    @Bean
+    @Profile("dev")
+    public SecurityFilterChain filterChain2(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(mvc.pattern("/ocen-film")).authenticated()
                         .requestMatchers(mvc.pattern("/admin/**")).hasAnyRole(ADMIN_ROLE)
                         .requestMatchers(h2ConsoleRequestMatcher).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                         .anyRequest().permitAll()
                 );
         http
@@ -43,8 +70,9 @@ public class CustomSecurityConfig {
                         .logoutSuccessUrl("/login?logout").permitAll()
                 );
         http
-                .csrf(csrf -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**"))
-        );
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**"))
+                );
         http.headers(header -> header.frameOptions(FrameOptionsConfig::sameOrigin));
         return http.build();
     }

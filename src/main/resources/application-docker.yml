@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://host.docker.internal:3306/gameclub?serverTimezone=UTC
+  web:
+    resources:
+      static-locations: classpath:/static/,file:/uploads/
+app:
+  storage:
+    location: /uploads/

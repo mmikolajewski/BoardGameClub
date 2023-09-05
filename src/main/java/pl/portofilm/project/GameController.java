@@ -37,12 +37,12 @@ public class GameController {
         return "game";
     }
 
-    @GetMapping("top10")
+    @GetMapping("/top10")
     public String getTop10(Model model) {
         List<GameDto> topGames = gameService.findTopGames(10);
         model.addAttribute("heading", "TOP 10 GIER");
         model.addAttribute("description", "Gry z najwyższą oceną");
         model.addAttribute("games", topGames);
-        return "/game-listing";
+        return "game-listing";
     }
 }
