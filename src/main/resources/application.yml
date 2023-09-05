@@ -2,5 +2,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+    show-sql: true
+    defer-datasource-initialization: true
   liquibase:
     change-log: classpath:db/changelog/master.xml
