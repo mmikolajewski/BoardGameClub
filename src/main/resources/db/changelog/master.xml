@@ -12,9 +12,15 @@
     <include file="0005_create_table_game_rating.xml" relativeToChangelogFile="true" />
 
     <!-- TEST DATA -->
-    <include file="../testdata/0001_genres.sql" relativeToChangelogFile="true" context="dev,prod"/>
-    <include file="../testdata/0002_games.sql" relativeToChangelogFile="true" context="dev,prod"/>
-    <include file="../testdata/0003_games_genres.sql" relativeToChangelogFile="true" context="dev,prod"/>
-    <include file="../testdata/0004_users_and_roles.sql" relativeToChangelogFile="true" context="dev,prod"/>
-    <include file="../testdata/0005_game_main_rating.sql" relativeToChangelogFile="true" context="dev,prod"/>
+    <include file="../testdata/0001_genres.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0002_games.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0003_games_genres.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0004_users_and_roles.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0005_game_main_rating.sql" relativeToChangelogFile="true" context="dev"/> 
+    
+    <include file="../testdata/0001_genres.sql" relativeToChangelogFile="true" context="server"/>
+    <include file="../testdata/0002_games.sql" relativeToChangelogFile="true" context="server"/>
+    <include file="../testdata/0003_games_genres.sql" relativeToChangelogFile="true" context="server"/>
+    <include file="../testdata/0004_users_and_roles.sql" relativeToChangelogFile="true" context="server"/>
+    <include file="../testdata/0005_game_main_rating.sql" relativeToChangelogFile="true" context="server"/>
 </databaseChangeLog>
