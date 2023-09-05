@@ -28,7 +28,6 @@ public class GameController {
     String game(Model model, @PathVariable Long id, Authentication authentication){
         GameDto game = gameService.findGameById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
         model.addAttribute("game", game);
-
         if (authentication != null) {
             String currentUserEmail = authentication.getName();
             Integer rating = ratingService.getUserRatingForMovie(currentUserEmail, id).orElse(0);
