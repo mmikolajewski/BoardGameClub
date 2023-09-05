@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql:3306/gameclub?serverTimezone=UTC?createDatabaseIfNotExist=true
+    url: jdbc:mysql://mysql:3306/gameclub?createDatabaseIfNotExist=true
   web:
     resources:
       static-locations: classpath:/static/,file:/uploads/
