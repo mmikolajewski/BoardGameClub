@@ -1,4 +1,4 @@
 docker build -t pawn .
 docker stop pawn || true
 docker rm pawn || true
-docker run -p 8080:8080 -v /root/uploads/img:/uploads/img --name=pawn -e SPRING_PROFILES_ACTIVE=prod,server --name pawn pawn
+docker run -p 8080:8080 -v /root/uploads/img:/uploads/img --name=pawn -e SPRING_PROFILES_ACTIVE=prod,server --network ogloszex-network --restart unless-stopped --name pawn pawn
