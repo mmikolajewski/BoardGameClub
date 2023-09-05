@@ -1,4 +1,3 @@
-call mvn clean package
 docker build -t pawn .
 docker stop pawn
 docker rm pawn
