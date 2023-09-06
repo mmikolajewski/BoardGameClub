@@ -4,7 +4,7 @@ spring:
     username: root
     password: admin
   liquibase:
-    contexts: dev
+    contexts: prod
   web:
     resources:
       static-locations: classpath:/static/,file:\Users\mikol\uploads
