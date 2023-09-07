@@ -93,7 +93,7 @@ i powinna zajmować większość dostępnej przestrzeni
     .main-content,
     .menu {
         align-self: center;
-        width: 960px;
+        width: 1020px;
     }
 }
 
@@ -182,7 +182,7 @@ i powinna zajmować większość dostępnej przestrzeni
 .game-summary-item {
     margin: 8px 0;
 }
-/*Większy tytuł filmu*/
+/*Większy tytuł gry*/
 .game-summary-title {
     font-size: 2rem;
 }
@@ -236,7 +236,8 @@ i powinna zajmować większość dostępnej przestrzeni
 /*Wyśrodkowanie trailera*/
 .game-guide {
     display: block;
-    margin: auto;
+    margin: 0 auto;
+    max-width: 100%;
 }
 
 /*Responsive game.html*/
@@ -313,8 +314,9 @@ textarea{
 }
 
 .gc-form > button {
+    align-self: center;
     margin-top: 16px;
-    margin-inline: 24rem;
+    margin-inline: 5rem;
     background-color: dodgerblue;
     color: white;
     border: none;
