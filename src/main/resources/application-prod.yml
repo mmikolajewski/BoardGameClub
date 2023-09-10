@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/gameclub?serverTimezone=UTC
     username: root
-    password:
+    password: KazimierzPrzerwaTetmajer
   liquibase:
     contexts: prod
   web:
