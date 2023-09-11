@@ -159,7 +159,7 @@ i powinna zajmować większość dostępnej przestrzeni
 
 
 /*game.html*/
-/*Informacje o filmie w jednym rzędzie z odstępem od jumbotrona*/
+/*Informacje o grze w jednym rzędzie z odstępem od jumbotrona*/
 .game-summary {
     display: flex;
     margin-top: 16px;
@@ -169,7 +169,7 @@ i powinna zajmować większość dostępnej przestrzeni
     object-fit: contain;
     max-width: 200px;
 }
-/*Odstęp informacji o filmie od okładki*/
+/*Odstęp informacji o grze od okładki*/
 .game-summary-info {
     margin-left: 16px;
 }
