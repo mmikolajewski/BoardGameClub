@@ -1,7 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql:3306/gameclub?serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://80.211.249.94:3306/pawngames?serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: pawngames
+    password: Astronauta#Nekronauta
   web:
     resources:
       static-locations: classpath:/static/,file:/uploads/
