@@ -10,7 +10,7 @@
   <h2 class="list-heading">Dodaj nową gre</h2>
 
   <form action="" th:action="@{/admin/dodaj-gre}" method="post" enctype="multipart/form-data" class="gc-form" th:object="${newGame}">
-    <label for="gameName"></label>
+    <label for="gameName">Tytuł gry</label>
     <input type="text" id="gameName" placeholder="Przykładowy tytuł" th:field="*{title}">
 
     <label for="releaseDate">Rok premiery</label>
