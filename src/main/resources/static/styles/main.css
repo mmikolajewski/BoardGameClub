@@ -11,7 +11,7 @@ body {
 /*Ustawienie koloru odnośników i usunięcie podkreśleń*/
 a {
     text-decoration: none;
-    color: deepskyblue  ;
+    color: #1e90ff  ;
 }
 /*Kolor tła w głównym kontenerze i ustawienie elastycznego rozkładu
 Elementy będą ustawiane jeden pod drugim
@@ -33,7 +33,7 @@ i powinna zajmować większość dostępnej przestrzeni
 /*Kolor logotypu i przycisku rozwijającego menu*/
 .logo,
 #toggle-icon {
-    color: dodgerblue;
+    color: #1e90ff;
 }
 /*Ustawienia dla responsywnego menu*/
 .menu {
@@ -317,7 +317,7 @@ textarea{
     align-self: center;
     margin-top: 16px;
     margin-inline: 5rem;
-    background-color: dodgerblue;
+    background-color: #1e90ff;
     color: white;
     border: none;
 }
@@ -348,8 +348,20 @@ textarea{
 
 /* logowanie komunikat */
 .gc-form-message{
-    color: cornflowerblue;
+    color: #1e90ff;
     text-align: center;
 }
+/* genre-lisitng do edycji */
+.genre-admin-listing {
+    margin-left: auto;
+    margin-right: auto;
+}
+.genre-admin-listing tr td {
+    font-size: 1.2rem;
+    border: 1px white solid;
+    padding: 10px;
+
+}
+
 
 

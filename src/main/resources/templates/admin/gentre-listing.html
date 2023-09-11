@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Gatunki gier - Pawn</title>
+</head>
+<main class="main-content" layout:fragment="content">
+  <h2 class="list-heading">Gatunki gier</h2>
+    <div class="">
+      <table class="genre-admin-listing">
+        <thead>
+        <tr class="">
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="genre: ${genres}">
+          <td th:href="@{|gatunek/${genre.name}|}" th:text="${genre.namePl}">Strategia</td>
+          <td> <a th:href="|@{/admin/edytuj-gatunek?id=}${genre.id}|">Edytuj</a> </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+</main>
+
+</div>
+<link rel="stylesheet" href="/styles/main.css" >
+<script src="/scripts/common.js"></script>
+</body>
+</html>
