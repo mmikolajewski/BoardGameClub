@@ -12,13 +12,13 @@ layout:decorate="~{layout}">
       <div class="game-summary">
         <img th:if="${game.poster == null}" src="/img/poster-placeholder.png"
              th:src="@{/img/poster-placeholder.png}"
-             alt="tytuł filmu"
+             alt="tytuł gry"
              th:alt="${game.title}"
              class="game-summary-cover"
         />
         <img th:unless="${game.poster == null}" src="/img/poster-placeholder.png"
              th:src="@{|/img/${game.poster}|}"
-             alt="tytuł filmu"
+             alt="tytuł gry"
              th:alt="${game.title}"
              class="game-summary-cover"
         />
@@ -46,7 +46,7 @@ layout:decorate="~{layout}">
           <p th:text="|Liczba ocen: ${game.ratingCount}|">Liczba ocen: 134</p>
         </div>
         <form action="#" th:action="@{/ocen-gre}" method="post" class="game-rating-form">
-          <!-- Identyfikator filmu, na który głosujemy-->
+          <!-- Identyfikator gry, na który głosujemy-->
           <p>Twoja ocena</p>
           <input type="hidden" name="gameId" th:value="${game.id}">
           <div class="game-rating-buttons">
@@ -83,9 +83,6 @@ layout:decorate="~{layout}">
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Pawn 2023 <i class="fas fa-copyright"></i> PortoFilm.pl</p>
-  </footer>
 </div>
 <link rel="stylesheet" href="/styles/main.css" >
 <script src="/scripts/common.js"></script>
